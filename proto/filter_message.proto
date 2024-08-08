@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package techshcool.pcbook;
+
+option go_package = "example.com/pcbook/pb";
+
+import "memory_message.proto";
+
+message Filter {
+  double max_price_usd = 1;
+  uint32 min_cpu_cores = 2;
+  double min_cpu_ghz = 3;
+  Memory min_ram = 4;
+}

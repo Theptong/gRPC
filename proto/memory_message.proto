@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package techshcool.pcbook;
+
+// option go_package = "example.com/pcbook/pb";  // เปลี่ยนเส้นทางนี้ตามโครงสร้างของโปรเจกต์ Go ของคุณ
+option go_package = "example.com/pcbook/pb";
+
+message Memory {
+    enum Unit {
+        UNKNOWN = 0;
+        BIT = 1;
+        BYTE = 2;
+        KILOBYTE = 3;
+        MEGABYTE = 4;
+        GIGABYTE = 5;
+        TERABYTE = 6;
+    }
+    uint64 value = 1;
+    Unit unit = 2;
+}

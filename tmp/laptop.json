@@ -1,0 +1,63 @@
+{
+ "@type": "type.googleapis.com/techshcool.pcbook.Laptop",
+ "id": "d184141e-cd64-4c20-9054-59fe458618e1",
+ "brand": "Apple",
+ "name": "Max",
+ "cpu": {
+  "brand": "Intel",
+  "name": "Xeon E-2286M",
+  "number_cores": 4,
+  "number_threads": 12,
+  "min_ghz": 2.2302921951732047,
+  "max_ghz": 4.304431195053322
+ },
+ "ram": {
+  "value": "52",
+  "unit": 5
+ },
+ "gpus": [
+  {
+   "brand": "AMD",
+   "name": "RX 5700-XT",
+   "min_ghz": 1.348080471713629,
+   "max_ghz": 1.8424362022345164,
+   "memory": {
+    "value": "6",
+    "unit": 5
+   }
+  }
+ ],
+ "storages": [
+  {
+   "driver": 2,
+   "memory": {
+    "value": "923",
+    "unit": 5
+   }
+  },
+  {
+   "driver": 1,
+   "memory": {
+    "value": "852",
+    "unit": 5
+   }
+  }
+ ],
+ "screen": {
+  "size_inch": 16,
+  "resolution": {
+   "width": 2876,
+   "height": 1618
+  },
+  "panal": 1,
+  "multitouch": false
+ },
+ "keyboard": {
+  "layout": 1,
+  "backlit": true
+ },
+ "weight_kg": 1.1089468967119294,
+ "price_usd": 2683.222567012377,
+ "release_year": 2019,
+ "updated_at": "2024-07-30T09:32:47.739652200Z"
+}

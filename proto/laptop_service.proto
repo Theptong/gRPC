@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+// กำหนด package ของ proto file เป็น techshcool.pcbook
+package techshcool.pcbook;
+
+// นำเข้าไฟล์ข้อมูลของ Laptop และ Filter จากไฟล์ .proto อื่น
+import "laptop_message.proto";
+import "filter_message.proto";
+
+// กำหนด option go_package เพื่อระบุว่า Go package ที่ถูกสร้างจาก proto file นี้จะอยู่ที่
+// example.com/pcbook/pb
+option go_package = "example.com/pcbook/pb";
+
+// ข้อความ CreateLaptopRequest ใช้สำหรับส่งข้อมูลเครื่องคอมพิวเตอร์ที่ต้องการสร้าง
+message CreateLaptopRequest {
+  Laptop laptop = 1; // ใช้ Laptop ที่ถูกกำหนดไว้ในไฟล์ laptop_message.proto
+}
+
+// ข้อความ CreateLaptopResponse ใช้สำหรับรับข้อมูล id ของเครื่องคอมพิวเตอร์ที่ถูกสร้าง
+message CreateLaptopResponse { string id = 1; }
+
+// ข้อความ SearchLaptopRequest ใช้สำหรับส่งข้อมูลเงื่อนไขในการค้นหาเครื่องคอมพิวเตอร์
+message SearchLaptopRequest {
+  Filter filter = 1; // ใช้ Filter ที่ถูกกำหนดไว้ในไฟล์ filter_message.proto
+}
+
+// ข้อความ SearchLaptopResponse ใช้สำหรับรับข้อมูลเครื่องคอมพิวเตอร์ที่ค้นหาได้
+message SearchLaptopResponse {
+  Laptop laptop = 1; // ใช้ Laptop ที่ถูกกำหนดไว้ในไฟล์ laptop_message.proto
+}
+
+message UploadImageRequest {
+  oneof data {
+    ImageInfo info = 1;
+    bytes chunk_data = 2;
+  };
+}
+
+message ImageInfo {
+  string laptop_id = 1;
+  string image_type = 2;
+}
+
+message UploadImageResponse {
+  string id = 1;
+  uint32 size = 2;
+}
+
+message RateLaptopRequest {
+  string laptop_id = 1;
+  double score = 2;
+}
+
+message RateLaptopResponse {
+  string laptop_id = 1;
+  uint32 rated_count = 2;
+  double average_score = 3;
+}
+
+// กำหนดบริการ LaptopService ที่รวมเมธอดสำหรับการสร้างและค้นหาเครื่องคอมพิวเตอร์
+service LaptopService {
+  rpc CreateLaptop ( .techshcool.pcbook.CreateLaptopRequest ) returns ( .techshcool.pcbook.CreateLaptopResponse );
+  rpc RateLaptop ( stream .techshcool.pcbook.RateLaptopRequest ) returns ( stream .techshcool.pcbook.RateLaptopResponse );
+  rpc SearchLaptop ( .techshcool.pcbook.SearchLaptopRequest ) returns ( stream .techshcool.pcbook.SearchLaptopResponse );
+  rpc UploadImage ( stream .techshcool.pcbook.UploadImageRequest ) returns ( .techshcool.pcbook.UploadImageResponse );
+}
